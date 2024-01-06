@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>摄像头地图</title>
+  <!-- 引入 Leaflet 的 CSS 文件 -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    /* 设置地图容器的样式 */
+    #map {
+      height: 800px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+<!-- 创建包含地图的容器 -->
+<div id="map"></div>
+
+<!-- 引入 Leaflet 的 JavaScript 文件 -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script>
+  // 在这里添加你的摄像头位置数据，格式为 [纬度, 经度]
+  var cameraLocations = [
+    [34.2776, -251.0574], // 举例：纽约市的位置
+    // 添加更多摄像头位置...
+  ];
+
+  // 创建 Leaflet 地图
+  var map = L.map('map').setView([34.2776, -251.0574], 13);
+
+  // 添加 OpenStreetMap 图层
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(map);
+
+  // 在地图上添加摄像头标记
+  cameraLocations.forEach(function(location) {
+    L.marker(location).addTo(map);
+  });
+</script>
+
+</body>
+</html>
